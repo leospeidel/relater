@@ -7,9 +7,9 @@
 #' @param sele data.frame. sele file
 #' @return Returns a data table.
 #' @examples
-#' mut         <- read.mut(system.file("extdata/example.mut.gz", package = "relater"))
-#' sele        <- read.sele(system.file("extdata/example.sele.gz", package = "relater"))
-#' freq        <- read.freq(system.file("extdata/example.freq.gz", package = "relater"))
+#' mut         <- read.mut(system.file("extdata/example.mut.gz", package = "relater"), CHR = 1)
+#' sele        <- read.sele(system.file("extdata/example.sele.gz", package = "relater"), CHR = 1)
+#' freq        <- read.freq(system.file("extdata/example.freq.gz", package = "relater"), CHR = 1)
 #' get.allele_ages(mut, freq, sele)
 #' @export
 
@@ -36,7 +36,7 @@ get.allele_ages <- function(mut, freq, sele){
 
   }else{
 
-    warning("No column named CHR. Mergin data frame using BP only.")
+    warning("No column named CHR. Merging data frame using BP only.")
 
     if(any(colnames(mut) == "upstream")){
       mut <- mut[,c("pos_of_snp", "rs-id", "age_begin", "age_end", "ancestral_allele/alternative_allele", "upstream", "downstream")]
@@ -71,13 +71,13 @@ get.allele_ages <- function(mut, freq, sele){
 #' @return Returns a data table.
 #' @examples
 #' # get allele ages
-#' mut         <- read.mut(system.file("extdata/example.mut.gz", package = "relater"))
-#' sele        <- read.sele(system.file("extdata/example.sele.gz", package = "relater"))
-#' freq        <- read.freq(system.file("extdata/example.freq.gz", package = "relater"))
+#' mut         <- read.mut(system.file("extdata/example.mut.gz", package = "relater"), CHR = 1)
+#' sele        <- read.sele(system.file("extdata/example.sele.gz", package = "relater"), CHR = 1)
+#' freq        <- read.freq(system.file("extdata/example.freq.gz", package = "relater"), CHR = 1)
 #' allele_ages <- get.allele_ages(mut, freq, sele)
 #'
 #' # read quality file
-#' qual        <- read.qual(system.file("extdata/example.qual.gz", package = "relater"))
+#' qual        <- read.qual(system.file("extdata/example.qual.gz", package = "relater"), CHR = 1)
 #' filter.allele_ages(allele_ages, qual)
 #' @export
 

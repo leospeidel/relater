@@ -23,10 +23,10 @@ library(relater)
 # Example analysis for polygenic selection test:
 
 # read files
-mut         <- read.mut(system.file("extdata/example.mut.gz", package = "relater"))
-sele        <- read.sele(system.file("extdata/example.sele.gz", package = "relater"))
-freq        <- read.freq(system.file("extdata/example.freq.gz", package = "relater"))
-qual        <- read.qual(system.file("extdata/example.qual.gz", package = "relater"))
+mut         <- read.mut(system.file("extdata/example.mut.gz", package = "relater"), CHR = 1)
+sele        <- read.sele(system.file("extdata/example.sele.gz", package = "relater"), CHR = 1)
+freq        <- read.freq(system.file("extdata/example.freq.gz", package = "relater"), CHR = 1)
+qual        <- read.qual(system.file("extdata/example.qual.gz", package = "relater"), CHR = 1)
 
 
 # Obtain allele_ages data table
