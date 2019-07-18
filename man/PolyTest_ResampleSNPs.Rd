@@ -20,5 +20,7 @@ Returns a numeric 1x20 matrix.
 Given DAF, resample 20 selection p-values of SNPs selected uniformly at random with matching DAF
 }
 \examples{
+\dontrun{
 PolyTest_ResampleSNPs(DAF, quantiles, allele_ages_quantiles)
+}
 }

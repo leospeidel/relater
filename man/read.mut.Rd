@@ -20,5 +20,5 @@ Returns a data table.
 This function uses fread to parse a .mut file, which is part of the anc/mut output file format of SHAPEIT2.
 }
 \examples{
-read.haps("example.mut")
+read.mut(system.file("extdata/example.mut.gz", package = "relater"))
 }

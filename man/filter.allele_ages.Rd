@@ -18,5 +18,13 @@ Returns a data table.
 This function filters out selection pvalues on bad trees using summary statistics on tree quality stored in qual.
 }
 \examples{
+# get allele ages
+mut         <- read.mut(system.file("extdata/example.mut.gz", package = "relater"))
+sele        <- read.sele(system.file("extdata/example.sele.gz", package = "relater"))
+freq        <- read.freq(system.file("extdata/example.freq.gz", package = "relater"))
+allele_ages <- get.allele_ages(mut, freq, sele)
+
+# read quality file
+qual        <- read.qual(system.file("extdata/example.qual.gz", package = "relater"))
 filter.allele_ages(allele_ages, qual)
 }

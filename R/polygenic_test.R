@@ -7,7 +7,9 @@
 #' @param allele_ages data.table. Obtained from get.allele_ages()
 #' @return Returns a list containing a data frame (quantiles) and a list of data tables (allele_ages_quantiles).
 #' @examples
+#' \dontrun{
 #' PolyTest_Init(allele_ages)
+#' }
 #' @export
 
 PolyTest_Init <- function(allele_ages){
@@ -34,7 +36,9 @@ PolyTest_Init <- function(allele_ages){
 #' @param allele_ages_quantiles List of data tables. Obtained from PolyTest_Init.
 #' @return Returns a numeric 1x20 matrix.
 #' @examples
+#' \dontrun{
 #' PolyTest_ResampleSNPs(DAF, quantiles, allele_ages_quantiles)
+#' }
 #' @export
 #'
 PolyTest_ResampleSNPs <- function(DAF, quantiles, allele_ages_quantiles){
@@ -63,14 +67,13 @@ PolyTest_ResampleSNPs <- function(DAF, quantiles, allele_ages_quantiles){
 #' @param allele_ages_quantiles List of data tables. Obtained from PolyTest_Init.
 #' @return Returns a pvalue.
 #' @examples
-#' PolyTest(DAFs, pvalues, quantiles, allele_ages_quantiles)
 #'
 #' # Example analysis:
 #' # read files
-#' mut         <- read.mut(system.file("./inst/extdata/example.mut.gz", package = "relater"))
-#' sele        <- read.sele(system.file("./inst/extdata/example.sele.gz", package = "relater"))
-#' freq        <- read.freq(system.file("./inst/extdata/example.freq.gz", package = "relater"))
-#' qual        <- read.qual(system.file("./inst/extdata/example.qual.gz", package = "relater"))
+#' mut         <- read.mut(system.file("extdata/example.mut.gz", package = "relater"))
+#' sele        <- read.sele(system.file("extdata/example.sele.gz", package = "relater"))
+#' freq        <- read.freq(system.file("extdata/example.freq.gz", package = "relater"))
+#' qual        <- read.qual(system.file("extdata/example.qual.gz", package = "relater"))
 #'
 #' # Obtain allele_ages data table
 #' allele_ages <- get.allele_ages(mut, freq, sele)
@@ -83,7 +86,7 @@ PolyTest_ResampleSNPs <- function(DAF, quantiles, allele_ages_quantiles){
 #'
 #' # Make a fake polygenic trait
 #' df          <- allele_ages[!is.na(allele_ages$pvalue),]
-#' df          <- df[sample(1:nrow(df), 50, replace = F),]
+#' df          <- df[sample(1:nrow(df), 50, replace = FALSE),]
 #'
 #' # Run polygenic test
 #' PolyTest(df$DAF, df$pvalue, quant$quantiles, quant$allele_ages_quantiles)

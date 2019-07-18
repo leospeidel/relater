@@ -16,5 +16,5 @@ Returns a data frame.
 This function parses a *_avg.rate file, which stores average mutation rates inferred by Relate
 }
 \examples{
-read.avg_rate("example_avg.rate")
+read.avg_rate(system.file("extdata/example_avg.rate.gz", package = "relater"))
 }

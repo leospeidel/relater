@@ -6,7 +6,7 @@
 #' @param ... Any other parameters for fread
 #' @return Returns a data table.
 #' @examples
-#' read.haps("example.haps")
+#' read.haps(system.file("extdata/example.haps.gz", package = "relater"))
 #' @export
 
 read.haps <- function(filename, ...){
@@ -22,7 +22,7 @@ read.haps <- function(filename, ...){
 #' @param ... Any other parameters for fread
 #' @return Returns a data table.
 #' @examples
-#' read.haps("example.sample")
+#' read.sample(system.file("extdata/example.sample.gz", package = "relater"))
 #' @export
 
 read.sample <- function(filename, ...){
@@ -39,7 +39,7 @@ read.sample <- function(filename, ...){
 #' @param ... Any other parameters for fread
 #' @return Returns a data table.
 #' @examples
-#' read.haps("example.mut")
+#' read.mut(system.file("extdata/example.mut.gz", package = "relater"))
 #' @export
 #'
 read.mut <- function(filename, CHR = NA, ...){
@@ -61,10 +61,10 @@ read.mut <- function(filename, CHR = NA, ...){
 #' @param filename string. Filename
 #' @return Returns a data frame.
 #' @examples
-#' read.coal("example.coal")
+#' read.coal(system.file("extdata/example.coal.gz", package = "relater"))
 #' @export
 #'
-read.coal <- function(filename, ...){
+read.coal <- function(filename){
 
   groups <- as.matrix(utils::read.table(filename, nrow = 1))
   epochs <- as.matrix(utils::read.table(filename, nrow = 1, skip = 1))
@@ -89,7 +89,7 @@ read.coal <- function(filename, ...){
 #' @param filename string. Filename
 #' @return Returns a data frame.
 #' @examples
-#' read.avg_rate("example_avg.rate")
+#' read.avg_rate(system.file("extdata/example_avg.rate.gz", package = "relater"))
 #' @export
 #'
 read.avg_rate <- function(filename){
@@ -107,7 +107,7 @@ read.avg_rate <- function(filename){
 #' @param CHR int. Chromosome index.
 #' @return Returns a data frame.
 #' @examples
-#' read.sele("example.sele")
+#' read.sele(system.file("extdata/example.sele.gz", package = "relater"))
 #' @export
 #'
 read.sele <- function(filename, CHR = NA){
@@ -127,7 +127,7 @@ read.sele <- function(filename, CHR = NA){
 #' @param CHR int. Chromosome index.
 #' @return Returns a data frame.
 #' @examples
-#' read.lin("example.lin")
+#' read.lin(system.file("extdata/example.lin.gz", package = "relater"))
 #' @export
 read.lin <- function(filename, CHR = NA){
 
@@ -146,7 +146,7 @@ read.lin <- function(filename, CHR = NA){
 #' @param CHR int. Chromosome index.
 #' @return Returns a data frame.
 #' @examples
-#' read.freq("example.freq")
+#' read.freq(system.file("extdata/example.freq.gz", package = "relater"))
 #' @export
 read.freq <- function(filename, CHR = NA){
 
@@ -169,7 +169,7 @@ read.freq <- function(filename, CHR = NA){
 #' @param CHR int. Chromosome index.
 #' @return Returns a data frame.
 #' @examples
-#' read.qual("example.qual")
+#' read.qual(system.file("extdata/example.qual.gz", package = "relater"))
 #' @export
 read.qual <- function(filename, CHR = NA){
 

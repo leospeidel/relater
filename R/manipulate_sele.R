@@ -7,6 +7,9 @@
 #' @param sele data.frame. sele file
 #' @return Returns a data table.
 #' @examples
+#' mut         <- read.mut(system.file("extdata/example.mut.gz", package = "relater"))
+#' sele        <- read.sele(system.file("extdata/example.sele.gz", package = "relater"))
+#' freq        <- read.freq(system.file("extdata/example.freq.gz", package = "relater"))
 #' get.allele_ages(mut, freq, sele)
 #' @export
 
@@ -67,6 +70,14 @@ get.allele_ages <- function(mut, freq, sele){
 #' @param qual data.frame. qual file
 #' @return Returns a data table.
 #' @examples
+#' # get allele ages
+#' mut         <- read.mut(system.file("extdata/example.mut.gz", package = "relater"))
+#' sele        <- read.sele(system.file("extdata/example.sele.gz", package = "relater"))
+#' freq        <- read.freq(system.file("extdata/example.freq.gz", package = "relater"))
+#' allele_ages <- get.allele_ages(mut, freq, sele)
+#'
+#' # read quality file
+#' qual        <- read.qual(system.file("extdata/example.qual.gz", package = "relater"))
 #' filter.allele_ages(allele_ages, qual)
 #' @export
 
@@ -90,7 +101,7 @@ filter.allele_ages <- function(allele_ages, qual){
   }
 
   threshold   <- c(stats::quantile(qual$frac_branches_with_snp, probs = c(0.05)), stats::quantile(qual$num_snps_on_tree, probs = c(0.05)))
-  allele_ages <- subset(allele_ages, frac_branches_with_snp >= threshold[1] & num_snps_on_tree >= threshold[2])
+  allele_ages <- subset(allele_ages, allele_ages$frac_branches_with_snp >= threshold[1] & allele_ages$num_snps_on_tree >= threshold[2])
   allele_ages <- allele_ages[,which(!(colnames(allele_ages) %in% c("frac_branches_with_snp", "num_snps_on_tree", "fraction_snps_not_mapping"))), with = FALSE]
 
   after <- sum(!is.na(allele_ages$pvalue))

@@ -5,6 +5,7 @@
 #' @param haps data.table.
 #' @return Returns a matrix.
 #' @examples
+#' haps <- read.haps(system.file("extdata/example.haps.gz", package = "relater"))
 #' get_hap_matrix(haps)
 #' @export
 

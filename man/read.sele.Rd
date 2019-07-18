@@ -18,5 +18,5 @@ Returns a data frame.
 This function parses a .sele file, which stores selection p-values inferred by Relate
 }
 \examples{
-read.sele("example.sele")
+read.sele(system.file("extdata/example.sele.gz", package = "relater"))
 }

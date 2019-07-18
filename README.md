@@ -23,10 +23,10 @@ library(relater)
 # Example analysis for polygenic selection test:
 
 # read files
-mut         <- read.mut(system.file("./inst/extdata/example.mut.gz", package = "relater"))
-sele        <- read.sele(system.file("./inst/extdata/example.sele.gz", package = "relater"))
-freq        <- read.freq(system.file("./inst/extdata/example.freq.gz", package = "relater"))
-qual        <- read.qual(system.file("./inst/extdata/example.qual.gz", package = "relater"))
+mut         <- read.mut(system.file("extdata/example.mut.gz", package = "relater"))
+sele        <- read.sele(system.file("extdata/example.sele.gz", package = "relater"))
+freq        <- read.freq(system.file("extdata/example.freq.gz", package = "relater"))
+qual        <- read.qual(system.file("extdata/example.qual.gz", package = "relater"))
 
 
 # Obtain allele_ages data table
@@ -41,7 +41,7 @@ quant       <- PolyTest_Init(allele_ages)
 # Make a fake polygenic trait
 df          <- allele_ages[!is.na(allele_ages$pvalue),]
 df          <- df[df$pvalue < 0,]
-df          <- df[sample(1:nrow(df), 50, replace = F),]
+df          <- df[sample(1:nrow(df), 50, replace = FALSE),]
 
 # Run polygenic test
 PolyTest(df$DAF, df$pvalue, quant$quantiles, quant$allele_ages_quantiles)
@@ -49,22 +49,22 @@ PolyTest(df$DAF, df$pvalue, quant$quantiles, quant$allele_ages_quantiles)
 ################################################
 # Parsing .coal files
 
-coal <- read.coal(system.file("./inst/extdata/example.coal.gz", package = "relater"))
+coal <- read.coal(system.file("extdata/example.coal.gz", package = "relater"))
 head(coal)
 
 ################################################
 # Parsing *_avg.rate files
 
-avg_mutrate <- read.avg_rate(system.file("./inst/extdata/example_avg.rate.gz", package = "relater"))
+avg_mutrate <- read.avg_rate(system.file("extdata/example_avg.rate.gz", package = "relater"))
 head(avg_mutrate)
 
 ################################################
 # Parsing haps/sample files
 
-haps   <- read.haps(system.file("./inst/extdata/example.haps.gz", package = "relater"))
+haps   <- read.haps(system.file("extdata/example.haps.gz", package = "relater"))
 head(haps)
 
-sample <- read.sample(system.file("./inst/extdata/example.sample.gz", package = "relater"))
+sample <- read.sample(system.file("extdata/example.sample.gz", package = "relater"))
 head(sample)
 
 ```

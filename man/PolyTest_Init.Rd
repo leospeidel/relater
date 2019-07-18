@@ -16,5 +16,7 @@ Returns a list containing a data frame (quantiles) and a list of data tables (al
 This function initialises the polygenic selection test.
 }
 \examples{
+\dontrun{
 PolyTest_Init(allele_ages)
+}
 }

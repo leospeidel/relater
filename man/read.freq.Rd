@@ -18,5 +18,5 @@ Returns a data frame.
 This function parses a .freq file, which stores frequencies in Relate-inferred genealogies
 }
 \examples{
-read.freq("example.freq")
+read.freq(system.file("extdata/example.freq.gz", package = "relater"))
 }

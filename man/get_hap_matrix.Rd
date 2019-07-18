@@ -16,5 +16,6 @@ Returns a matrix.
 This function extracts the haplotype matrix from .haps data frames
 }
 \examples{
+haps <- read.haps(system.file("extdata/example.haps.gz", package = "relater"))
 get_hap_matrix(haps)
 }

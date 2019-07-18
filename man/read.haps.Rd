@@ -18,5 +18,5 @@ Returns a data table.
 This function uses fread to parse a .haps file, which is part of the haps/sample output file format of SHAPEIT2.
 }
 \examples{
-read.haps("example.haps")
+read.haps(system.file("extdata/example.haps.gz", package = "relater"))
 }

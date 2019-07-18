@@ -4,7 +4,7 @@
 \alias{read.coal}
 \title{Parse coal file}
 \usage{
-read.coal(filename, ...)
+read.coal(filename)
 }
 \arguments{
 \item{filename}{string. Filename}
@@ -16,5 +16,5 @@ Returns a data frame.
 This function parses a .coal file, which stores coalescence rates inferred by Relate
 }
 \examples{
-read.coal("example.coal")
+read.coal(system.file("extdata/example.coal.gz", package = "relater"))
 }

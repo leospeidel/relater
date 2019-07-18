@@ -18,5 +18,5 @@ Returns a data frame.
 This function parses a .qual file, which stores summary statistics on the quality of Relate-inferred genealogies
 }
 \examples{
-read.qual("example.qual")
+read.qual(system.file("extdata/example.qual.gz", package = "relater"))
 }

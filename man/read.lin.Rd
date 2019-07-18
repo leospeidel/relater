@@ -18,5 +18,5 @@ Returns a data frame.
 This function parses a .lin file, which stores number of lineages remaining in Relate-inferred genealogies
 }
 \examples{
-read.lin("example.lin")
+read.lin(system.file("extdata/example.lin.gz", package = "relater"))
 }
