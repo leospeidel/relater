@@ -26,10 +26,10 @@ PolyTest(DAFs, pvalues, quantiles, allele_ages_quantiles)
 
 # Example analysis:
 # read files
-mut         <- read.mut("./inst/extdata/example.mut.gz")
-sele        <- read.sele("./inst/extdata/example.sele.gz")
-freq        <- read.freq("./inst/extdata/example.freq.gz")
-qual        <- read.qual("./inst/extdata/example.qual.gz")
+mut         <- read.mut(system.file("./inst/extdata/example.mut.gz", package = "relater"))
+sele        <- read.sele(system.file("./inst/extdata/example.sele.gz", package = "relater"))
+freq        <- read.freq(system.file("./inst/extdata/example.freq.gz", package = "relater"))
+qual        <- read.qual(system.file("./inst/extdata/example.qual.gz", package = "relater"))
 
 # Obtain allele_ages data table
 allele_ages <- get.allele_ages(mut, freq, sele)

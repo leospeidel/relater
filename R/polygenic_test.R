@@ -19,7 +19,7 @@ PolyTest_Init <- function(allele_ages){
   quantiles                    <- unique(quantiles)
   quantiles[length(quantiles)] <- max(allele_ages$DAF+1)
   freq_quantiles               <- data.table(ID = allele_ages$ID, DAF = cut(allele_ages$DAF,  quantiles, include.lowest=TRUE))
-  allele_ages_quantiles        <- data.table::split(data.table(ID = allele_ages$ID, pvalue = allele_ages$pvalue, DAF = allele_ages$DAF), with(freq_quantiles, DAF))
+  allele_ages_quantiles        <- split(data.table(ID = allele_ages$ID, pvalue = allele_ages$pvalue, DAF = allele_ages$DAF), with(freq_quantiles, DAF))
   quantiles                    <- quantiles[-1]
 
   return(list(quantiles = quantiles, allele_ages_quantiles = allele_ages_quantiles))
@@ -67,10 +67,10 @@ PolyTest_ResampleSNPs <- function(DAF, quantiles, allele_ages_quantiles){
 #'
 #' # Example analysis:
 #' # read files
-#' mut         <- read.mut("./inst/extdata/example.mut.gz")
-#' sele        <- read.sele("./inst/extdata/example.sele.gz")
-#' freq        <- read.freq("./inst/extdata/example.freq.gz")
-#' qual        <- read.qual("./inst/extdata/example.qual.gz")
+#' mut         <- read.mut(system.file("./inst/extdata/example.mut.gz", package = "relater"))
+#' sele        <- read.sele(system.file("./inst/extdata/example.sele.gz", package = "relater"))
+#' freq        <- read.freq(system.file("./inst/extdata/example.freq.gz", package = "relater"))
+#' qual        <- read.qual(system.file("./inst/extdata/example.qual.gz", package = "relater"))
 #'
 #' # Obtain allele_ages data table
 #' allele_ages <- get.allele_ages(mut, freq, sele)

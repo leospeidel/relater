@@ -18,13 +18,16 @@ remotes::install_github("leospeidel/relater")
 
 ``` r
 library(relater)
-# Example analysis:
+
+################################################
+# Example analysis for polygenic selection test:
 
 # read files
-mut         <- read.mut("./inst/extdata/example.mut.gz", CHR = 1)
-sele        <- read.sele("./inst/extdata/example.sele.gz", CHR = 1)
-freq        <- read.freq("./inst/extdata/example.freq.gz", CHR = 1)
-qual        <- read.qual("./inst/extdata/example.qual.gz", CHR = 1)
+mut         <- read.mut(system.file("./inst/extdata/example.mut.gz", package = "relater"))
+sele        <- read.sele(system.file("./inst/extdata/example.sele.gz", package = "relater"))
+freq        <- read.freq(system.file("./inst/extdata/example.freq.gz", package = "relater"))
+qual        <- read.qual(system.file("./inst/extdata/example.qual.gz", package = "relater"))
+
 
 # Obtain allele_ages data table
 allele_ages <- get.allele_ages(mut, freq, sele)
@@ -42,4 +45,26 @@ df          <- df[sample(1:nrow(df), 50, replace = F),]
 
 # Run polygenic test
 PolyTest(df$DAF, df$pvalue, quant$quantiles, quant$allele_ages_quantiles)
+
+################################################
+# Parsing .coal files
+
+coal <- read.coal(system.file("./inst/extdata/example.coal.gz", package = "relater"))
+head(coal)
+
+################################################
+# Parsing *_avg.rate files
+
+avg_mutrate <- read.avg_rate(system.file("./inst/extdata/example_avg.rate.gz", package = "relater"))
+head(avg_mutrate)
+
+################################################
+# Parsing haps/sample files
+
+haps   <- read.haps(system.file("./inst/extdata/example.haps.gz", package = "relater"))
+head(haps)
+
+sample <- read.sample(system.file("./inst/extdata/example.sample.gz", package = "relater"))
+head(sample)
+
 ```
