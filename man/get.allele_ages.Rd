@@ -21,5 +21,4 @@ This function aggregates mut, freq, and sele files inferred by Relate into an al
 }
 \examples{
 get.allele_ages(mut, freq, sele)
-
 }

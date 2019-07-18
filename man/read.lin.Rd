@@ -19,5 +19,4 @@ This function parses a .lin file, which stores number of lineages remaining in R
 }
 \examples{
 read.lin("example.lin")
-
 }

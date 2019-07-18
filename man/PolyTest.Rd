@@ -33,7 +33,7 @@ qual        <- read.qual("./inst/extdata/example.qual.gz")
 
 # Obtain allele_ages data table
 allele_ages <- get.allele_ages(mut, freq, sele)
-allele_ages <- Filter(allele_ages, qual)
+allele_ages <- filter.allele_ages(allele_ages, qual)
 
 ######### Polygenic selection test #########
 
@@ -42,10 +42,8 @@ quant       <- PolyTest_Init(allele_ages)
 
 # Make a fake polygenic trait
 df          <- allele_ages[!is.na(allele_ages$pvalue),]
-df          <- df[df$pvalue < 0,]
 df          <- df[sample(1:nrow(df), 50, replace = F),]
 
 # Run polygenic test
 PolyTest(df$DAF, df$pvalue, quant$quantiles, quant$allele_ages_quantiles)
-
 }

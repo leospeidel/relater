@@ -19,5 +19,4 @@ This function parses a .qual file, which stores summary statistics on the qualit
 }
 \examples{
 read.qual("example.qual")
-
 }

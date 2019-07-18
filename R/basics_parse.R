@@ -7,10 +7,10 @@
 #' @return Returns a data table.
 #' @examples
 #' read.haps("example.haps")
-#'
+#' @export
 
 read.haps <- function(filename, ...){
-  haps <- fread(filename, ...)
+  haps <- data.table::fread(filename, ...)
   return(haps)
 }
 
@@ -23,9 +23,10 @@ read.haps <- function(filename, ...){
 #' @return Returns a data table.
 #' @examples
 #' read.haps("example.sample")
-#'
+#' @export
+
 read.sample <- function(filename, ...){
-  sam <- fread(filename, ...)
+  sam <- data.table::fread(filename, ...)
   return(sam)
 }
 
@@ -39,9 +40,10 @@ read.sample <- function(filename, ...){
 #' @return Returns a data table.
 #' @examples
 #' read.haps("example.mut")
+#' @export
 #'
 read.mut <- function(filename, CHR = NA, ...){
-  mut <- fread(filename, ...)
+  mut <- data.table::fread(filename, ...)
   mut <- mut[,1:(ncol(mut)-1)]
   if(!is.na(CHR)) mut   <- cbind(CHR = CHR, mut)
 
@@ -60,19 +62,20 @@ read.mut <- function(filename, CHR = NA, ...){
 #' @return Returns a data frame.
 #' @examples
 #' read.coal("example.coal")
+#' @export
 #'
 read.coal <- function(filename, ...){
 
-  groups <- as.matrix(read.table(filename, nrow = 1))
-  epochs <- as.matrix(read.table(filename, nrow = 1, skip = 1))
-  coal   <- read.table(filename, skip = 2)
+  groups <- as.matrix(utils::read.table(filename, nrow = 1))
+  epochs <- as.matrix(utils::read.table(filename, nrow = 1, skip = 1))
+  coal   <- utils::read.table(filename, skip = 2)
 
   coal[,1] <- groups[coal[,1]+1]
   coal[,2] <- groups[coal[,2]+1]
 
   colnames(coal)[-c(1:2)] <- epochs
   colnames(coal)[1:2]     <- c("group1", "group2")
-  coal                    <- melt(coal, id.vars = c("group1", "group2"))
+  coal                    <- reshape2::melt(coal, id.vars = c("group1", "group2"))
   colnames(coal)[3:4]     <- c("epoch.start", "haploid.coalescence.rate")
   coal                    <- coal[order(paste(coal[,1], coal[,2], sep = "")),]
 
@@ -87,9 +90,10 @@ read.coal <- function(filename, ...){
 #' @return Returns a data frame.
 #' @examples
 #' read.avg_rate("example_avg.rate")
+#' @export
 #'
 read.avg_rate <- function(filename){
-  rate           <- read.table(filename)
+  rate           <- utils::read.table(filename)
   colnames(rate) <- c("epoch.start", "mutation.rate")
   rate           <- rate[!is.na(rate[,2]),]
   return(rate)
@@ -104,10 +108,11 @@ read.avg_rate <- function(filename){
 #' @return Returns a data frame.
 #' @examples
 #' read.sele("example.sele")
+#' @export
 #'
 read.sele <- function(filename, CHR = NA){
 
-  sele <- read.table(filename, header = T)
+  sele <- utils::read.table(filename, header = T)
   colnames(sele)[-c(1:2)] <- gsub(colnames(sele)[-c(1:2)], pattern = "X", replacement = "")
   if(!is.na(CHR)) sele   <- cbind(CHR = CHR, sele)
   return(sele)
@@ -123,10 +128,10 @@ read.sele <- function(filename, CHR = NA){
 #' @return Returns a data frame.
 #' @examples
 #' read.lin("example.lin")
-#'
+#' @export
 read.lin <- function(filename, CHR = NA){
 
-  lin                    <- read.table(filename, header = T)
+  lin                    <- utils::read.table(filename, header = T)
   colnames(lin)[-c(1:2)] <- gsub(colnames(lin)[-c(1:2)], pattern = "X", replacement = "")
   if(!is.na(CHR)) lin    <- cbind(CHR = CHR, lin)
   return(lin)
@@ -142,10 +147,10 @@ read.lin <- function(filename, CHR = NA){
 #' @return Returns a data frame.
 #' @examples
 #' read.freq("example.freq")
-#'
+#' @export
 read.freq <- function(filename, CHR = NA){
 
-  freq                    <- read.table(filename, header = T)
+  freq                    <- utils::read.table(filename, header = T)
   colnames(freq)[-c(1:2)] <- gsub(colnames(freq)[-c(1:2)], pattern = "X", replacement = "")
   if(all(freq$DataFreq == 0)){
     freq$DataFreq <- NA
@@ -165,10 +170,10 @@ read.freq <- function(filename, CHR = NA){
 #' @return Returns a data frame.
 #' @examples
 #' read.qual("example.qual")
-#'
+#' @export
 read.qual <- function(filename, CHR = NA){
 
-  qual                   <- read.table(filename, header = T)
+  qual                   <- utils::read.table(filename, header = T)
   if(!is.na(CHR)) qual   <- cbind(CHR = CHR, qual)
   colnames(qual)[which(colnames(qual) == "pos")] <- "BP"
   return(qual)

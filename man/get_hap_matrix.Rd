@@ -17,5 +17,4 @@ This function extracts the haplotype matrix from .haps data frames
 }
 \examples{
 get_hap_matrix(haps)
-
 }

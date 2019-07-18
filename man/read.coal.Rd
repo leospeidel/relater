@@ -17,5 +17,4 @@ This function parses a .coal file, which stores coalescence rates inferred by Re
 }
 \examples{
 read.coal("example.coal")
-
 }

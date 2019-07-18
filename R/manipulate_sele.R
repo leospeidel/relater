@@ -8,7 +8,8 @@
 #' @return Returns a data table.
 #' @examples
 #' get.allele_ages(mut, freq, sele)
-#'
+#' @export
+
 get.allele_ages <- function(mut, freq, sele){
 
   if( any(colnames(mut) == "CHR") & any(colnames(freq) == "CHR") & any(colnames(sele) == "CHR") ){
@@ -66,9 +67,10 @@ get.allele_ages <- function(mut, freq, sele){
 #' @param qual data.frame. qual file
 #' @return Returns a data table.
 #' @examples
-#' Filter(allele_ages, qual)
-#'
-Filter <- function(allele_ages, qual){
+#' filter.allele_ages(allele_ages, qual)
+#' @export
+
+filter.allele_ages <- function(allele_ages, qual){
 
   if(all(colnames(qual) != "BP")){
     stop("qual has no column named BP.")
@@ -87,7 +89,7 @@ Filter <- function(allele_ages, qual){
     allele_ages <- merge(allele_ages, qual[,c(colnames(qual) != "ID")], by = c("BP"))
   }
 
-  threshold   <- c(quantile(qual$frac_branches_with_snp, probs = c(0.05)), quantile(qual$num_snps_on_tree, probs = c(0.05)))
+  threshold   <- c(stats::quantile(qual$frac_branches_with_snp, probs = c(0.05)), stats::quantile(qual$num_snps_on_tree, probs = c(0.05)))
   allele_ages <- subset(allele_ages, frac_branches_with_snp >= threshold[1] & num_snps_on_tree >= threshold[2])
   allele_ages <- allele_ages[,which(!(colnames(allele_ages) %in% c("frac_branches_with_snp", "num_snps_on_tree", "fraction_snps_not_mapping"))), with = FALSE]
 

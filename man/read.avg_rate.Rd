@@ -17,5 +17,4 @@ This function parses a *_avg.rate file, which stores average mutation rates infe
 }
 \examples{
 read.avg_rate("example_avg.rate")
-
 }

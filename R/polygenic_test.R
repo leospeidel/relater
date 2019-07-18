@@ -8,16 +8,18 @@
 #' @return Returns a list containing a data frame (quantiles) and a list of data tables (allele_ages_quantiles).
 #' @examples
 #' PolyTest_Init(allele_ages)
+#' @export
+
 PolyTest_Init <- function(allele_ages){
   allele_ages <- allele_ages[!is.na(allele_ages$pvalue),]
   allele_ages <- allele_ages[allele_ages$pvalue < 0,]
 
   ##divide SNPs by frequency quantile
-  quantiles                    <- quantile(allele_ages$DAF, probs=seq(0,1,0.05))
+  quantiles                    <- stats::quantile(allele_ages$DAF, probs=seq(0,1,0.05))
   quantiles                    <- unique(quantiles)
   quantiles[length(quantiles)] <- max(allele_ages$DAF+1)
   freq_quantiles               <- data.table(ID = allele_ages$ID, DAF = cut(allele_ages$DAF,  quantiles, include.lowest=TRUE))
-  allele_ages_quantiles        <- split(data.table(ID = allele_ages$ID, pvalue = allele_ages$pvalue, DAF = allele_ages$DAF), with(freq_quantiles, DAF))
+  allele_ages_quantiles        <- data.table::split(data.table(ID = allele_ages$ID, pvalue = allele_ages$pvalue, DAF = allele_ages$DAF), with(freq_quantiles, DAF))
   quantiles                    <- quantiles[-1]
 
   return(list(quantiles = quantiles, allele_ages_quantiles = allele_ages_quantiles))
@@ -33,6 +35,8 @@ PolyTest_Init <- function(allele_ages){
 #' @return Returns a numeric 1x20 matrix.
 #' @examples
 #' PolyTest_ResampleSNPs(DAF, quantiles, allele_ages_quantiles)
+#' @export
+#'
 PolyTest_ResampleSNPs <- function(DAF, quantiles, allele_ages_quantiles){
 
   sample      <- data.frame(DAF = DAF, n = 1)
@@ -70,7 +74,7 @@ PolyTest_ResampleSNPs <- function(DAF, quantiles, allele_ages_quantiles){
 #'
 #' # Obtain allele_ages data table
 #' allele_ages <- get.allele_ages(mut, freq, sele)
-#' allele_ages <- Filter(allele_ages, qual)
+#' allele_ages <- filter.allele_ages(allele_ages, qual)
 #'
 #' ######### Polygenic selection test #########
 #'
@@ -83,7 +87,7 @@ PolyTest_ResampleSNPs <- function(DAF, quantiles, allele_ages_quantiles){
 #'
 #' # Run polygenic test
 #' PolyTest(df$DAF, df$pvalue, quant$quantiles, quant$allele_ages_quantiles)
-#'
+#' @export
 
 PolyTest <- function(DAFs, pvalues, quantiles, allele_ages_quantiles){
 
@@ -100,7 +104,7 @@ PolyTest <- function(DAFs, pvalues, quantiles, allele_ages_quantiles){
     }
 
     #use wilcox test to test if pvalues are shifted compared to random SNPs
-    wilcox.test(pvalues, resampled, alternative = "less", mu = 0)$p.value
+    stats::wilcox.test(pvalues, resampled, alternative = "less", mu = 0)$p.value
 
   },k = 1:20)
 

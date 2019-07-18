@@ -19,5 +19,4 @@ This function parses a .sele file, which stores selection p-values inferred by R
 }
 \examples{
 read.sele("example.sele")
-
 }

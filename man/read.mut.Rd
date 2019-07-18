@@ -21,5 +21,4 @@ This function uses fread to parse a .mut file, which is part of the anc/mut outp
 }
 \examples{
 read.haps("example.mut")
-
 }

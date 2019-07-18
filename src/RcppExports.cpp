@@ -5,16 +5,6 @@
 
 using namespace Rcpp;
 
-// test_node
-double test_node();
-RcppExport SEXP _relater_test_node() {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(test_node());
-    return rcpp_result_gen;
-END_RCPP
-}
 // timesTwo
 NumericVector timesTwo(NumericVector x);
 RcppExport SEXP _relater_timesTwo(SEXP xSEXP) {
@@ -28,7 +18,6 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_relater_test_node", (DL_FUNC) &_relater_test_node, 0},
     {"_relater_timesTwo", (DL_FUNC) &_relater_timesTwo, 1},
     {NULL, NULL, 0}
 };

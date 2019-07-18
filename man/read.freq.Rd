@@ -19,5 +19,4 @@ This function parses a .freq file, which stores frequencies in Relate-inferred g
 }
 \examples{
 read.freq("example.freq")
-
 }

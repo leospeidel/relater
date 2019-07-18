@@ -6,7 +6,7 @@
 #' @return Returns a matrix.
 #' @examples
 #' get_hap_matrix(haps)
-#'
+#' @export
 
 get_hap_matrix <- function(haps){
 

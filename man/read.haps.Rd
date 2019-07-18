@@ -19,5 +19,4 @@ This function uses fread to parse a .haps file, which is part of the haps/sample
 }
 \examples{
 read.haps("example.haps")
-
 }
