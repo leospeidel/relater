@@ -78,6 +78,7 @@ read.coal <- function(filename){
   coal                    <- reshape2::melt(coal, id.vars = c("group1", "group2"))
   colnames(coal)[3:4]     <- c("epoch.start", "haploid.coalescence.rate")
   coal                    <- coal[order(paste(coal[,1], coal[,2], sep = "")),]
+  coal$epoch.start        <- as.numeric(as.matrix(coal$epoch.start))
 
   return(coal)
 }
