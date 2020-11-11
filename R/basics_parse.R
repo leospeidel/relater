@@ -70,8 +70,10 @@ read.coal <- function(filename){
   epochs <- as.matrix(utils::read.table(filename, nrow = 1, skip = 1))
   coal   <- utils::read.table(filename, skip = 2)
 
-  coal[,1] <- groups[coal[,1]+1]
-  coal[,2] <- groups[coal[,2]+1]
+  if(length(groups) >= 1+max(coal[,1]) && length(groups) >= 1+max(coal[,2])){
+    coal[,1] <- groups[coal[,1]+1]
+    coal[,2] <- groups[coal[,2]+1]
+	}
 
   colnames(coal)[-c(1:2)] <- epochs
   colnames(coal)[1:2]     <- c("group1", "group2")
